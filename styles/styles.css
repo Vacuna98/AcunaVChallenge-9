@@ -1,0 +1,19 @@
+body{
+    background-color: olive;
+    color:white;
+}
+
+.title{
+    justify-content: center;
+    text-align: center;
+    color: white;
+    font-family: fantasy;
+    font-size: 25px;
+    margin-bottom: 25px;;
+}
+
+
+.instruction{
+    background-color: white;
+    color: black;
+}
