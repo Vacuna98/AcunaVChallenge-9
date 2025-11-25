@@ -1,9 +1,11 @@
 let firstName = document.getElementById("firstName");
 let lastName = document.getElementById("lastName");
 let personalEmail = document.getElementById("personalEmail");
-let studentEmail = document.getElementById("studentEmail");
+let schoolEmailEmail = document.getElementById("schoolEmail");
 let studentBtn = document.getElementById("studentBtn");
+let previousStudent = document.getElementById("previousStudent");
 
+let previousList = [];
 
 function getData(){
    return fetch("../data/data.json")
@@ -17,11 +19,23 @@ getData();
 
 
 
+
 function randomizeData(students){
         let randomIndex = Math.floor(Math.random() * students.length);
         console.log([randomIndex]);
         return students[randomIndex];
     }
+
+    function updatePreviousList(){
+        previousStudent.innerHTML = "";
+    
+        previousList.forEach((studentName) => {
+            let li = document.createElement("li");
+            li.innerText = studentName;
+            previousStudent.appendChild(li);
+        });
+    }
+    
 
 
     studentBtn.addEventListener("click", () => {
@@ -31,10 +45,21 @@ function randomizeData(students){
 
             firstName.innerText = randomStudent.firstName;
         lastName.innerText = randomStudent.lastName;
-        studentEmail.innerText = randomStudent.studentEmail;
+        schoolEmail.innerText = randomStudent.schoolEmail;
         personalEmail.innerText = randomStudent.personalEmail;
+
+        let fullName = `${randomStudent.firstName} ${randomStudent.lastName}`
+        previousList.unshift(fullName);
+
+        if(previousList.length>5){
+            previousList.pop();
+        }
+
+        updatePreviousList();
+
 
         })
     });
+
 
  
